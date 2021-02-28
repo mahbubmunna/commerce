@@ -83,17 +83,17 @@ class CheckoutApiController extends Controller
                 $order_detail->variation = $product_variation;
                 $order_detail->price = $cartItem['price'] * $cartItem['quantity'];
                 $order_detail->tax = 0;
-                $order_detail->shipping_type = 'home_delivery';
+                $order_detail->shipping_type = $cartItem['shipping_type'];
 
 
-//                if ($cartItem['shipping_type'] == 'home_delivery') {
-//                    $order_detail->shipping_cost = \App\Product::find($cartItem['id'])->shipping_cost*$cartItem['quantity'];
-//                }
-//                else{
-//                    $order_detail->shipping_cost = 0;
-//                    $order_detail->pickup_point_id = $cartItem['pickup_point'];
-//                }
-//                $order_detail->shipping_cost = \App\Product::find($cartItem['id'])->shipping_cost*$cartItem['quantity'];
+               if ($cartItem['shipping_type'] == 'home_delivery') {
+                   $order_detail->shipping_cost = \App\Product::find($cartItem['id'])->shipping_cost*$cartItem['quantity'];
+               }
+               else{
+                   $order_detail->shipping_cost = 0;
+                   $order_detail->pickup_point_id = $cartItem['pickup_point'];
+               }
+               $order_detail->shipping_cost = \App\Product::find($cartItem['id'])->shipping_cost*$cartItem['quantity'];
                 $order_detail->shipping_cost = \App\Product::find($cartItem['id'])->shipping_cost*$cartItem['quantity'];
 
                 $order_detail->quantity = $cartItem['quantity'];

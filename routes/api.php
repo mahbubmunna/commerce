@@ -29,7 +29,7 @@ Route::get('return-policy', 'API\GeneralApiController@return_policy');
 Route::get('support-policy', 'API\GeneralApiController@support_policy');
 
 //User
-Route::group(['middleware' => ['jwt.auth', 'mail.verified']], function(){
+Route::group(['middleware' => ['jwt.auth']], function(){
     Route::get('user', 'API\UserApiController@user');
     Route::post('user', 'API\UserApiController@user_update');
     Route::post('shipping_info', 'API\UserApiController@shipping_info');

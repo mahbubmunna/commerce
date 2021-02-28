@@ -57,6 +57,8 @@ Route::group(['middleware' => ['jwt.auth', 'mail.verified']], function(){
 });
 
 Route::get('countries', 'API\GeneralApiController@countries');
+Route::get('hubs', 'API\GeneralApiController@hubs');
+
 Route::get('banner', 'API\GeneralApiController@banner');
 Route::get('flash_sales', 'API\GeneralApiController@flash_sales');
 Route::get('brands', 'API\GeneralApiController@brands');

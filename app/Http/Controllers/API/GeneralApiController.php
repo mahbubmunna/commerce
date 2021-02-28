@@ -11,6 +11,7 @@ use App\Product;
 use App\Category;
 use App\Currency;
 use App\FlashDeal;
+use App\PickupPoint;
 use App\SubCategory;
 use App\GeneralSetting;
 use App\SubSubCategory;
@@ -151,6 +152,16 @@ class GeneralApiController extends Controller
             return $this->sendResponse($countries, 'Countries retrieved successfully.');
         }else{
             return $this->sendError('Country Not Found.');
+        }
+    }
+
+    public function hubs(){
+        $pickuppoint = PickupPoint::all();
+
+        if(count($pickuppoint) > 0){
+            return $this->sendResponse($pickuppoint, 'Distrubution Point retrieved successfully.');
+        }else{
+            return $this->sendError('Distrubution Point Not Fount');
         }
     }
 

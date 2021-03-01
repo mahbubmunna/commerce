@@ -45,6 +45,13 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'mobile' => 'required',
+            'password' => 'required',
+        ]);
+        
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;

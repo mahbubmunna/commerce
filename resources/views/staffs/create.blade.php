@@ -7,7 +7,15 @@
         <div class="panel-heading">
             <h3 class="panel-title">{{__('Staff Information')}}</h3>
         </div>
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!--Horizontal Form-->
         <!--===================================================-->
         <form class="form-horizontal" action="{{ route('staffs.store') }}" method="POST" enctype="multipart/form-data">

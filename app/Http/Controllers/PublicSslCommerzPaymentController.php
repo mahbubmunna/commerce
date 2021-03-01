@@ -106,11 +106,10 @@ class PublicSslCommerzPaymentController extends Controller
             // $post_data['ship_country'] = "Bangladesh";
 
             # OPTIONAL PARAMETERS
-            // $post_data['value_a'] = "ref001";
-            // $post_data['value_b'] = "ref002";
-            // $post_data['value_c'] = "ref003";
-            // $post_data['value_d'] = "ref004";
-
+            $post_data['value_a'] = $request->session()->get('order_id');
+            $post_data['value_b'] = $request->session()->get('payment_data');
+            $post_data['value_c'] = $request->session()->get('payment_type');
+            $post_data['value_d'] = $request->session()->get('payment_data');
             $sslc = new SSLCommerz();
             # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
             $payment_options = $sslc->initiate($post_data, false);
@@ -128,22 +127,22 @@ class PublicSslCommerzPaymentController extends Controller
 
         $sslc = new SSLCommerz();
         #Start to received these value from session. which was saved in index function.
-        $tran_id = $_SESSION['payment_values']['tran_id'];
+        // $tran_id = $_SESSION['payment_values']['tran_id'];
         #End to received these value from session. which was saved in index function.
         $payment = json_encode($request->all());
-
-        if(isset($_SESSION['payment_values']['payment_type'])){
-            if($_SESSION['payment_values']['payment_type'] == 'cart_payment'){
+        // dd($payment);
+        if(null != $request->value_c){
+            if($request->value_c == 'cart_payment'){
                 $checkoutController = new CheckoutController;
-                return $checkoutController->checkout_done($_SESSION['payment_values']['order_id'], $payment);
+                return $checkoutController->checkout_done($request->value_a, $payment);
             }
-            elseif ($_SESSION['payment_values']['payment_type'] == 'seller_payment') {
+            elseif ($request->value_c == 'seller_payment') {
                 $commissionController = new CommissionController;
-                return $commissionController->seller_payment_done($_SESSION['payment_values']['payment_data'], $payment);
+                return $commissionController->seller_payment_done($request->value_b, $payment);
             }
-            elseif ($_SESSION['payment_values']['payment_type'] == 'wallet_payment') {
+            elseif ($request->value_c == 'wallet_payment') {
                 $walletController = new WalletController;
-                return $walletController->wallet_payment_done($_SESSION['payment_values']['payment_data'], $payment);
+                return $walletController->wallet_payment_done($request->value_b, $payment);
             }
         }
     }

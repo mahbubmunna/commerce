@@ -75,3 +75,7 @@ Route::get('driver/settings', 'API\DriverApiController@driver_settings');
 Route::get('notification/{user_type}', 'API\UserApiController@getnotify');
 Route::get('related_products/{product_id}', 'API\GeneralApiController@related_products');
 Route::get('product/best-selling', 'API\GeneralApiController@best_selling');
+
+Route::get('ssl-pay', 'API\SslApiController@ssl');
+Route::post('ssl-pay/success', 'API\SslApiController@success');
+Route::post('ssl-pay/fail', 'API\SslApiController@fail');

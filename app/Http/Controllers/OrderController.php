@@ -158,7 +158,7 @@ class OrderController extends Controller
     }
 
     public function driver($id){
-        $order = Order::where('id',decrypt($id))->select(['id','code', 'payment_status','payment_details','shipping_address'])->first();
+        $order = Order::where('id',decrypt($id))->select(['id','code', 'payment_status','payment_type', 'payment_details','shipping_address'])->first();
         $role = Role::where('name','Driver')->first();
         if($role){
             $drivers = Staff::where('role_id', $role->id)->orderBy('updated_at','desc')->get();

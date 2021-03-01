@@ -24,12 +24,11 @@
                         <div><b>Payment Status</b><p>{{$order->payment_status}}</p></div>
                     </div>
                 </div>
-                <div class="form-group">
+		<div class="form-group">
                     <div class="col-sm-9">
-                        <div><b>Payment Method</b><p>{{$order->payment_type}}</p></div>
+                        <div><b>Payment Method</b><p>{{ucfirst(str_replace('_', ' ', $order->payment_type))}}</p></div>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-sm-6">
                         <div>

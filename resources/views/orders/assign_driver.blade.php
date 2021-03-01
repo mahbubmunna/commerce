@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <div><b>Payment Details</b><p>{{$order->payment_details}}</p></div>
+                        <div><b>Payment Method</b><p>{{$order->payment_type}}</p></div>
                     </div>
                 </div>
 

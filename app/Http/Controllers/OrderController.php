@@ -211,6 +211,10 @@ class OrderController extends Controller
                     $subtotal += $cartItem['price']*$cartItem['quantity'];
                     $tax += $cartItem['tax']*$cartItem['quantity'];
                     $shipping += \App\Product::find($cartItem['id'])->shipping_cost*$cartItem['quantity'];
+                }else{
+                    $subtotal += $cartItem['price']*$cartItem['quantity'];
+                    $tax += 0;
+                    $shipping += 0;
                 }
 
                 $product_variation = null;

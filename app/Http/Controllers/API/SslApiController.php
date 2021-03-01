@@ -124,7 +124,7 @@ class SslApiController extends Controller
     }
 
     public function success(Request $request){
-        $order = Order::find($request->order_id);
+        $order = Order::find($request->value_a);
         $order->payment_status = 'paid';
         $order->payment_type = 'sslcommerz';
         $order->payment_details = json_encode($request->all());

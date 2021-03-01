@@ -16,6 +16,7 @@
                     <th>{{__('Order Code')}}</th>
                     <th>{{__('Num. of Products')}}</th>
                     <th>{{__('Customer')}}</th>
+                    <th>{{__('Pickup Points')}}</th>
                     <th>{{__('Amount')}}</th>
                     <th>{{__('Delivery Status')}}</th>
                     <th>{{__('Payment Method')}}</th>
@@ -45,6 +46,9 @@
                                 @else
                                     Guest ({{ $order->guest_id }})
                                 @endif
+                            </td>
+                            <td>
+                                {{ $order->orderDetails->first()->pickup_point->name }}
                             </td>
                             <td>
                                 {{ single_price($order->orderDetails->sum('price') + $order->orderDetails->sum('tax')) }}

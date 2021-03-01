@@ -13,6 +13,9 @@ class SslApiController extends Controller
     public function ssl(Request $request)
     {
         $order = Order::findOrFail($request->order_id);
+        if ($order->grand_total <= 0) {
+            return redirect('/api/ssl-pay/fail');
+        }
         $shipping = json_decode($order->shipping_address);
         if(BusinessSetting::where('type', 'sslcommerz_sandbox')->first()->value == 1){
             $ssl_mode = "sandbox";
@@ -64,7 +67,7 @@ class SslApiController extends Controller
         // $post_data['ship_country'] = "Bangladesh";
 
         # OPTIONAL PARAMETERS
-        // $post_data['value_a'] = $user->id;
+        $post_data['value_a'] = $request->order_id;
         // $post_data['value_b '] = $user_type;
         // $post_data['value_c'] = $user_type;
         // $post_data['value_d'] = "ref004";
@@ -120,7 +123,13 @@ class SslApiController extends Controller
         }
     }
 
-    public function success(){
+    public function success(Request $request){
+        $order = Order::find($request->order_id);
+        $order->payment_status = 'paid';
+        $order->payment_type = 'sslcommerz';
+        $order->payment_details = json_encode($request->all());
+        $order->save();
+
         return 'Payment Successful';
     }
 

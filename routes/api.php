@@ -77,5 +77,5 @@ Route::get('related_products/{product_id}', 'API\GeneralApiController@related_pr
 Route::get('product/best-selling', 'API\GeneralApiController@best_selling');
 
 Route::get('ssl-pay', 'API\SslApiController@ssl');
-Route::post('ssl-pay/success', 'API\SslApiController@success');
-Route::post('ssl-pay/fail', 'API\SslApiController@fail');
+Route::any('ssl-pay/success', 'API\SslApiController@success');
+Route::any('ssl-pay/fail', 'API\SslApiController@fail');

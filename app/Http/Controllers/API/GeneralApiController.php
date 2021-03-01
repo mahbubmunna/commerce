@@ -39,7 +39,7 @@ class GeneralApiController extends Controller
         $settings->put('pickup_point', BusinessSetting::where('type', 'pickup_point')->first()->value);
         $settings->put('conversation_system', BusinessSetting::where('type', 'conversation_system')->first()->value);
         $settings->put('guest_checkout_active', BusinessSetting::where('type', 'guest_checkout_active')->first()->value);
-        $settings->put('color', Color::find(GeneralSetting::first()->frontend_color)->code);
+        //$settings->put('color', Color::find(GeneralSetting::first()->frontend_color)->code);
         $settings->put('general_setting', GeneralSetting::first());
 
         return $this->sendResponse($settings, 'Site Settings Retrived');

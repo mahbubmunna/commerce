@@ -156,8 +156,19 @@ class GeneralApiController extends Controller
     }
 
     public function hubs(){
-        $pickuppoint = PickupPoint::all();
-
+        $pickuppoints = PickupPoint::all();
+        $pickuppoint =[];
+        foreach ($pickuppoints as $key => $value) {
+            $pickuppoint[$key]['id'] = $value->id;
+            $pickuppoint[$key]['staff_id'] = $value->staff_id ;
+            $pickuppoint[$key]['name'] = $value->name.', '.$value->address  ;
+            $pickuppoint[$key]['address'] = $value->address ;
+            $pickuppoint[$key]['phone'] = $value->phone ;
+            $pickuppoint[$key]['pick_up_status'] = $value->pick_up_status;
+            $pickuppoint[$key]['cash_on_pickup_status'] = $value->cash_on_pickup_status;
+            $pickuppoint[$key]['created_at'] = $value->created_at ;
+            $pickuppoint[$key]['updated_at'] = $value->updated_at ;
+        }
         if(count($pickuppoint) > 0){
             return $this->sendResponse($pickuppoint, 'Distrubution Point retrieved successfully.');
         }else{

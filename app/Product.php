@@ -37,4 +37,9 @@ class Product extends Model
   public function wishlists(){
     return $this->hasMany(Wishlist::class);
   }
+
+  public function getPurchasePriceAttribute()
+  {
+      return $this->unit_price;
+  }
 }

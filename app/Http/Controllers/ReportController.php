@@ -63,4 +63,10 @@ class ReportController extends Controller
         }
         return view('reports.wish_report', compact('products'));
     }
+
+    public function reseller_report()
+    {
+        $resellers = PickupPoint::all();
+        return view('reports.reseller_report', compact('resellers'));
+    }
 }

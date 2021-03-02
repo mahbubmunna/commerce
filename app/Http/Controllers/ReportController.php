@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Product;
-use App\Seller;
 use App\User;
+use App\Seller;
+use App\Product;
+use App\PickupPoint;
+use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {

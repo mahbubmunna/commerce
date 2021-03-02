@@ -273,6 +273,9 @@
                                 <li class="{{ areActiveRoutes(['wish_report.index'])}}">
                                     <a class="nav-link" href="{{ route('wish_report.index') }}">{{__('Product Wish Report')}}</a>
                                 </li>
+                                <li class="{{ areActiveRoutes(['reseller_report.index'])}}">
+                                    <a class="nav-link" href="{{ route('reseller_report.index') }}">{{ __('pickup point') }} {{__('Report')}}</a>
+                                </li>
                             </ul>
                         </li>
 

@@ -79,3 +79,7 @@ Route::get('product/best-selling', 'API\GeneralApiController@best_selling');
 Route::get('ssl-pay', 'API\SslApiController@ssl');
 Route::any('ssl-pay/success', 'API\SslApiController@success');
 Route::any('ssl-pay/fail', 'API\SslApiController@fail');
+
+Route::get('/search', 'API\SearchApiController@search');
+Route::get('/search?q={search}', 'API\SearchApiController@search');
+Route::post('/ajax-search', 'API\SearchApiController@ajax_search');

@@ -15,7 +15,7 @@
                         <thead>
                             <tr>
                                 <th>{{ __('Pick-up Point') }}</th>
-                                <th>{{ __('Num of Sale') }}</th>
+                                {{-- <th>{{ __('Num of Sale') }}</th> --}}
                                 <th>{{ __('Num. of Products') }}</th>
                             </tr>
                         </thead>
@@ -23,7 +23,7 @@
                             @foreach ($resellers as $key => $reseller)
                                 <tr>
                                     <td>{{ $reseller->name }}</td>
-                                    <td>{{ $reseller->orders->count() }}</td>
+                                    {{-- <td>{{ $reseller->orders->count() }}</td> --}}
                                     <td>{{ $reseller->orderDetails->sum('quantity') }}</td>
                                 </tr>
                             @endforeach
